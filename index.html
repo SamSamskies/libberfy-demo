@@ -30,35 +30,68 @@
       #madlib-form-container {
         line-height: 30px;
         text-align: left;
+        margin-bottom: 50px;
       }
       #madlib-form-container input[type=text] {
         height: 25px;
         line-height: 25px;
+      }
+      #audio {
+        display: none;
+        margin-top: 50px;
+        font-size: 30px;
+      }
+      img {
+        display: none;
       }
     </style>
   </head>
   <body>
     <div class="container">
       <h1><a href='/'>Libberfy Mad Lib API Demo</a></h1>
+      <img src='ajax-loader.gif'>
       <form id='original-text' role='form'>
         <textarea class='form-control'></textarea>
         <input type='submit' class='btn btn-primary'>
       </form>
       <div id="madlib-form-container"></div>
+      <a id='audio' href="#" target="_blank">Click to listen to Mad Lib</a>
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script>
-      $('#original-text').submit( function(e) {
-        e.preventDefault();
-        $originalText = $(this);
-        $originalText.hide();
-        url = "http://libberfy.herokuapp.com?html_form=1&q=" + $originalText.find('textarea').val()
-        $.getJSON(url, function( response ) {
-          $madlibFormContainer = $('#madlib-form-container');
-          $madlibFormContainer.append(response.madlib);
-          $madlibFormContainer.find('input[type=submit]').addClass('btn btn-primary');
-        })
-      })
+      (function() {
+        $('#original-text').submit( function(e) {
+          e.preventDefault();
+          var $originalText = $(this);
+          var $spinner = $('img');
+
+          $originalText.hide();
+          $spinner.show();
+
+          var url = "http://libberfy.herokuapp.com?html_form=1&q=" + $originalText.find('textarea').val()
+
+          $.getJSON(url, function( response ) {
+            $spinner.hide();
+            var $madlibFormContainer = $('#madlib-form-container');
+            $madlibFormContainer.append(response.madlib);
+            $madlibFormContainer.find('input[type=submit]').addClass('btn btn-primary');
+          });
+        });
+
+        $(document).on('submit', '#madlib-form-container', function(e) {
+          e.preventDefault();
+          var $madlibFormContainer = $(this);
+
+          $madlibFormContainer.find('input[type=text]').each( function() {
+            $(this).replaceWith(this.value);
+          });
+
+          $madlibFormContainer.find('input[type=submit]').remove();
+          var textToAudioUrl = "http://tts-api.com/tts.mp3?q=" + $madlibFormContainer.text();
+
+          $('#audio').attr('href', textToAudioUrl).show();
+        });
+      })();
     </script>
   </body>
 </html>
