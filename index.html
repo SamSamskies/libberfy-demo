@@ -91,6 +91,7 @@
             var $madlibFormContainer = $('#madlib-form-container');
             $madlibFormContainer.append(response.madlib);
             $madlibFormContainer.find('input[type=submit]').addClass('btn btn-primary');
+            $madlibFormContainer.find('input[type=text]')[0].focus();
           });
         });
 
