@@ -41,7 +41,7 @@
         margin-top: 50px;
         font-size: 30px;
       }
-      img {
+      .spinner {
         display: none;
       }
       footer {
@@ -51,9 +51,10 @@
     </style>
   </head>
   <body>
+    <a href="https://github.com/SamSamskies/libberfy-demo"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
     <div class="container">
       <h1><a href='/libberfy-demo'>Libberfy Mad Libs API Demo</a></h1>
-      <img src='ajax-loader.gif'>
+      <img class='spinner' src='ajax-loader.gif'>
       <form id='original-text' role='form'>
         <textarea class='form-control' placeholder='Copy and paste or type text that you want to Mad Libberfy'></textarea>
         <input type='submit' class='btn btn-primary'>
@@ -62,6 +63,7 @@
       <a id='audio' href="#" target="_blank">Click to listen to Mad Lib</a>
       <footer>
         <p>Powered by: <a href="https://github.com/SamSamskies/libberfy">Libberfy Mad Libs API</a> and <a href="http://tts-api.com/">TTS-API.COM</a>
+        </p>
       </footer>
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -70,7 +72,7 @@
         $('#original-text').submit( function(e) {
           e.preventDefault();
           var $originalText = $(this);
-          var $spinner = $('img');
+          var $spinner = $('.spinner');
 
           $originalText.hide();
           $spinner.show();
