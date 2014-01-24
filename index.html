@@ -24,17 +24,24 @@
         height: 200px;
       }
       input[type=submit] {
-        margin-top: 20px;
+        margin-top: 25px;
         float: right;
       }
       #madlib-form-container {
         line-height: 30px;
         text-align: left;
         margin-bottom: 50px;
+        color: white;
+      }
+      #madlib-form-container.show-text {
+        color: black;
       }
       #madlib-form-container input[type=text] {
         height: 25px;
         line-height: 25px;
+      }
+      #madlib-form-container input[type=submit] {
+        margin-top: 65px;
       }
       #audio {
         display: none;
@@ -94,7 +101,7 @@
           $madlibFormContainer.find('input[type=text]').each( function() {
             $(this).replaceWith(this.value);
           });
-
+          $madlibFormContainer.addClass('show-text');
           $madlibFormContainer.find('input[type=submit]').remove();
           var textToAudioUrl = "http://tts-api.com/tts.mp3?q=" + $madlibFormContainer.text();
 
