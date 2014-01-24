@@ -27,6 +27,14 @@
         margin-top: 20px;
         float: right;
       }
+      #madlib-form-container {
+        line-height: 30px;
+        text-align: left;
+      }
+      #madlib-form-container input[type=text] {
+        height: 25px;
+        line-height: 25px;
+      }
     </style>
   </head>
   <body>
@@ -36,6 +44,21 @@
         <textarea class='form-control'></textarea>
         <input type='submit' class='btn btn-primary'>
       </form>
+      <div id="madlib-form-container"></div>
     </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+      $('#original-text').submit( function(e) {
+        e.preventDefault();
+        $originalText = $(this);
+        $originalText.hide();
+        url = "http://libberfy.herokuapp.com?html_form=1&q=" + $originalText.find('textarea').val()
+        $.getJSON(url, function( response ) {
+          $madlibFormContainer = $('#madlib-form-container');
+          $madlibFormContainer.append(response.madlib);
+          $madlibFormContainer.find('input[type=submit]').addClass('btn btn-primary');
+        })
+      })
+    </script>
   </body>
 </html>
