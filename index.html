@@ -32,12 +32,15 @@
         text-align: left;
         margin-bottom: 50px;
         color: white;
+        font-size: 0;
       }
       #madlib-form-container.show-text {
         color: black;
+        font-size: 22px;
       }
       #madlib-form-container input[type=text] {
         margin: 10px 0;
+        height: 50px;
       }
       #audio {
         display: none;
@@ -62,9 +65,7 @@
         <textarea class='form-control' placeholder='Copy and paste or type text that you want to Mad Libberfy' autofocus></textarea>
         <input type='submit' class='btn btn-primary'>
       </form>
-      <div id="madlib-form-container">
-
-      </div>
+      <div id="madlib-form-container"></div>
       <a id='audio' href="#" target="_blank">Click to listen to Mad Lib</a>
       <footer>
         <p>Powered by: <a href="https://github.com/SamSamskies/libberfy">Libberfy Mad Libs API</a> and <a href="http://tts-api.com/">TTS-API.COM</a>
