@@ -28,7 +28,6 @@
         float: right;
       }
       #madlib-form-container {
-        line-height: 30px;
         text-align: left;
         margin-bottom: 50px;
         color: white;
@@ -37,11 +36,7 @@
         color: black;
       }
       #madlib-form-container input[type=text] {
-        height: 25px;
-        line-height: 25px;
-      }
-      #madlib-form-container input[type=submit] {
-        margin-top: 65px;
+        margin: 10px 0;
       }
       #audio {
         display: none;
@@ -66,7 +61,9 @@
         <textarea class='form-control' placeholder='Copy and paste or type text that you want to Mad Libberfy' autofocus></textarea>
         <input type='submit' class='btn btn-primary'>
       </form>
-      <div id="madlib-form-container"></div>
+      <div id="madlib-form-container">
+
+      </div>
       <a id='audio' href="#" target="_blank">Click to listen to Mad Lib</a>
       <footer>
         <p>Powered by: <a href="https://github.com/SamSamskies/libberfy">Libberfy Mad Libs API</a> and <a href="http://tts-api.com/">TTS-API.COM</a>
@@ -91,7 +88,9 @@
             var $madlibFormContainer = $('#madlib-form-container');
             $madlibFormContainer.append(response.madlib);
             $madlibFormContainer.find('input[type=submit]').addClass('btn btn-primary');
-            $madlibFormContainer.find('input[type=text]')[0].focus();
+            $inputFields = $madlibFormContainer.find('input[type=text]');
+            $inputFields.addClass('form-control')
+            $inputFields[0].focus();
           });
         });
 
