@@ -54,6 +54,12 @@
       .spinner {
         display: none;
       }
+      .error {
+        display: none;
+        font-size: 22px;
+        color: black;
+        text-align: center;
+      }
       footer {
         margin-top: 300px;
         color: #666;
@@ -69,7 +75,9 @@
         <textarea class='form-control' placeholder='Copy and paste or type text that you want to Mad Libberfy' autofocus></textarea>
         <input type='submit' class='btn btn-primary'>
       </form>
-      <div id="madlib-form-container"></div>
+      <div id="madlib-form-container">
+        <p class='error'>Give me at least 3 English words please.</p>
+      </div>
       <a id='audio' href="#" target="_blank">Click to listen to Mad Lib</a>
       <footer>
         <p>Powered by: <a href="https://github.com/SamSamskies/libberfy">Libberfy Mad Libs API</a> and <a href="http://tts-api.com/">TTS-API.COM</a>
@@ -95,8 +103,13 @@
             $madlibFormContainer.append(response.madlib);
             $madlibFormContainer.find('input[type=submit]').addClass('btn btn-primary');
             $inputFields = $madlibFormContainer.find('input[type=text]');
-            $inputFields.addClass('form-control')
-            $inputFields[0].focus();
+
+            if($inputFields.length > 0) {
+              $inputFields.addClass('form-control')
+              $inputFields[0].focus();
+            } else {
+              $('.error').show();
+            }
           });
         });
 
